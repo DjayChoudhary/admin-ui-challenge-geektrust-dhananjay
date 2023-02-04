@@ -11,7 +11,7 @@ interface IMemberData {
   role: string;
   id: string;
 }
-
+// TODO:  deleted rows not persisting across different page views
 export default function App() {
   const PAGINATION_ROW_COUNT = 10;
 
@@ -101,6 +101,7 @@ export default function App() {
         <TableContainer
           // members={searchResults.slice(0, PAGINATION_ROW_COUNT)}
           members={currentPageMembers}
+          setMembers={setCurrentPageMembers}
         />
         <PaginationContainer
           searchResultCount={searchResultCount}

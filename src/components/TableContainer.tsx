@@ -3,10 +3,19 @@ import { MdDeleteOutline } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
 interface ITableContainerProps {
   members: IRowMemberData[];
+  setMembers: React.Dispatch<React.SetStateAction<IRowMemberData[]>>;
 }
-export default function TableContainer({ members }: ITableContainerProps) {
+export default function TableContainer({
+  members,
+  setMembers,
+}: ITableContainerProps) {
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
 
+  function handleRowDelete(rowId: string) {
+    setMembers((prevMembers) =>
+      prevMembers.filter((member) => member.id !== rowId)
+    );
+  }
   return (
     <div className="relative w-full overflow-x-auto">
       <table className="table-auto text-left w-full">
@@ -34,6 +43,7 @@ export default function TableContainer({ members }: ITableContainerProps) {
                 key={memberRow.id}
                 rowData={memberRow}
                 allRowsSelected={allRowsSelected}
+                handleRowDelete={handleRowDelete}
               />
             );
           })}
@@ -45,6 +55,7 @@ export default function TableContainer({ members }: ITableContainerProps) {
 interface IRowProps {
   rowData: IRowMemberData;
   allRowsSelected: boolean;
+  handleRowDelete: (rowId: string) => void;
 }
 interface IRowMemberData {
   selected?: boolean;
@@ -53,11 +64,11 @@ interface IRowMemberData {
   role: string;
   id: string;
 }
-function Row({ rowData, allRowsSelected }: IRowProps) {
+function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
   const [isRowSelected, setIsRowSelected] = useState(allRowsSelected);
   const [memberRow, setMemberRow] = useState<IRowMemberData>(rowData);
   const rowSelection = useRef<HTMLInputElement | null>(null);
-  function handleRowToggle(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleRowToggle() {
     console.log("Row toggled: " + memberRow.id);
 
     setIsRowSelected((prev) => !prev);
@@ -81,8 +92,13 @@ function Row({ rowData, allRowsSelected }: IRowProps) {
 
   return (
     <tr
-      className="border-b-2 border-b-gray-100 hover:scale-y-105  hover:shadow-md"
+      className="border-b-2 border-b-gray-100 hover:scale-y-105  hover:shadow-md focus:scale-y-105  focus:shadow-md"
       id={memberRow.id}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleRowToggle();
+        console.log("row clicked");
+      }}
     >
       <td className="pl-2 pr-4 py-2 focus:bg-red-400">
         <input
@@ -91,8 +107,10 @@ function Row({ rowData, allRowsSelected }: IRowProps) {
           name="checkbox"
           id={memberRow.id}
           checked={isRowSelected}
-          onChange={(e) => {
-            handleRowToggle(e);
+          onClick={(e) => {
+            e.stopPropagation();
+            handleRowToggle();
+            console.log("checkbox clicked");
           }}
         />
       </td>
@@ -100,10 +118,21 @@ function Row({ rowData, allRowsSelected }: IRowProps) {
       <td className="px-4 py-2">{memberRow.email}</td>
       <td className="px-4 py-2">{memberRow.role}</td>
       <td className="px-4 py-2 flex">
-        <button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            console.log("Row Edit Clicked: " + memberRow.id);
+          }}
+        >
           <BiEdit className="h-6 w-6 text-blue-600" />
         </button>
-        <button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            console.log("Row Edit Deleted: " + memberRow.id);
+            handleRowDelete(memberRow.id);
+          }}
+        >
           <MdDeleteOutline className="h-6 w-6 text-red-600" />
         </button>
       </td>
