@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TableContainer from "./components/TableContainer";
 import members from "./models/members.json";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
+import { FaGithub } from "react-icons/fa";
 import PaginationContainer from "./components/PaginationContainer";
 
 interface IMemberData {
@@ -76,8 +77,15 @@ function App() {
   return (
     <div className="mx-auto max-w-3xl p-4 m-4">
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-xl font-extrabold text-gray-800">
+        <h1 className="flex items-center justify-center gap-4 text-xl font-extrabold text-gray-800 w-full">
           Admin UI Challenge
+          <a
+            href="https://github.com/DjayChoudhary/admin-ui-challenge-geektrust-dhananjay"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub className="h-8 w-8" />
+          </a>
         </h1>
         <input
           type="search"
