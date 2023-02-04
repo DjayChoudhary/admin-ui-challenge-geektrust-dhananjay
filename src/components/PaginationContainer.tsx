@@ -42,7 +42,7 @@ export default function PaginationContainer({
         }}
         className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-blue-500"
       >
-        <IoMdArrowRoundBack className="h-5 w-5" />
+        <IoMdArrowRoundBack className="h-6 w-6" />
       </button>
       {paginationRows.map((page) => {
         return (
@@ -51,7 +51,7 @@ export default function PaginationContainer({
             onClick={(e) => {
               setCurrentPage(page);
             }}
-            className={`hover:text-gray-700 hover:scale-105 text-gray-600 font-semibold ${
+            className={`hover:text-gray-700 hover:scale-105 text-gray-600 font-semibold text-xl ${
               page === currentPage
                 ? "underline text-blue-600 scale-125 font-bold"
                 : ""
@@ -71,7 +71,7 @@ export default function PaginationContainer({
         }}
         className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-blue-500"
       >
-        <IoMdArrowRoundForward className="h-5 w-5" />
+        <IoMdArrowRoundForward className="h-6 w-6" />
       </button>
     </nav>
   );
