@@ -7,8 +7,11 @@ export default function PaginationContainer({
 }) {
   return (
     <nav className="flex gap-4 justify-evenly py-5">
-      <button className="rounded-full border-2 p-1">
-        <IoMdArrowRoundBack className="h-5 w-5 text-gray-700" />
+      <button
+        disabled
+        className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-gray-500"
+      >
+        <IoMdArrowRoundBack className="h-5 w-5" />
       </button>
       {paginationRows.map((page) => {
         return (
@@ -16,11 +19,11 @@ export default function PaginationContainer({
             key={page}
             className="rounded-full focus:underline focus:text-blue-600 focus:text-xl hover:text-gray-700 hover:text-lg text-gray-600 font-semibold"
           >
-            <span className="">{page}</span>
+            {page}
           </button>
         );
       })}
-      <button className="rounded-full border-2 p-1 hover:bg-blue-200 hov">
+      <button className="rounded-full border-2 p-1 hover:bg-blue-200">
         <IoMdArrowRoundForward className="h-5 w-5" />
       </button>
     </nav>
