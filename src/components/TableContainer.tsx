@@ -4,18 +4,15 @@ import { useState, useEffect, useRef } from "react";
 interface ITableContainerProps {
   members: IRowMemberData[];
   setMembers: React.Dispatch<React.SetStateAction<IRowMemberData[]>>;
+  handleRowDelete: (rowId: string) => void;
 }
 export default function TableContainer({
   members,
   setMembers,
+  handleRowDelete,
 }: ITableContainerProps) {
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
 
-  function handleRowDelete(rowId: string) {
-    setMembers((prevMembers) =>
-      prevMembers.filter((member) => member.id !== rowId)
-    );
-  }
   return (
     <div className="relative w-full overflow-x-auto">
       <table className="table-auto text-left w-full">

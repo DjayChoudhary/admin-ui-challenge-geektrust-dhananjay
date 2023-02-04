@@ -11,7 +11,7 @@ interface IMemberData {
   role: string;
   id: string;
 }
-// TODO:  deleted rows not persisting across different page views
+
 export default function App() {
   const PAGINATION_ROW_COUNT = 10;
 
@@ -24,6 +24,14 @@ export default function App() {
     []
   );
 
+  function handleRowDelete(rowId: string) {
+    setAllMembers((prevMembers) =>
+      prevMembers.filter((member) => member.id !== rowId)
+    );
+    setSearchResults((prevMembers) =>
+      prevMembers.filter((member) => member.id !== rowId)
+    );
+  }
   useEffect(() => {
     setAllMembers(members);
     setSearchResults(members);
@@ -102,6 +110,7 @@ export default function App() {
           // members={searchResults.slice(0, PAGINATION_ROW_COUNT)}
           members={currentPageMembers}
           setMembers={setCurrentPageMembers}
+          handleRowDelete={handleRowDelete}
         />
         <PaginationContainer
           searchResultCount={searchResultCount}
