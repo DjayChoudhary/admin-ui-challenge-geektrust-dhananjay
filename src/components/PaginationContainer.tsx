@@ -51,7 +51,6 @@ export default function PaginationContainer({
             onClick={(e) => {
               setCurrentPage(page);
             }}
-            autoFocus={page === currentPage}
             className={`hover:text-gray-700 hover:scale-105 text-gray-600 font-semibold ${
               page === currentPage
                 ? "underline text-blue-600 scale-125 font-bold"
