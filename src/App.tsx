@@ -96,9 +96,11 @@ function App() {
           // value={searchQuery}
           placeholder="Search by name, email or role"
         />
+        {/* <h1>{searchResults.length}</h1> */}
+        <TableContainer
+          members={searchResults.slice(0, PAGINATION_ROW_COUNT)}
+        />
         <PaginationContainer paginationRows={paginationRows} />
-        <h1>{searchResults.length}</h1>
-        <TableContainer members={searchResults} />
       </div>
     </div>
   );
