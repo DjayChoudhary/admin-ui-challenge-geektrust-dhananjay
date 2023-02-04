@@ -99,7 +99,7 @@ export default function App() {
             type="search"
             name="search"
             id="search"
-            className="px-1 my-4 w-full border-2 border-gray-200 rounded-md focus:outline-gray-400"
+            className="px-2 my-4 w-full border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-500"
             onChange={handleSearchChange}
             value={searchParams}
             placeholder="Search by name, email or role"

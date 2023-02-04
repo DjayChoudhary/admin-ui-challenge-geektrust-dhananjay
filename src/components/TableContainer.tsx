@@ -14,7 +14,7 @@ export default function TableContainer({
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
 
   return (
-    <div className="relative w-full overflow-x-auto">
+    <div className="relative w-full overflow-x-auto shadow-lg">
       <table className="table-auto text-left w-full">
         <thead>
           <tr className="border-b-2 border-b-gray-300 bg-gray-100">
