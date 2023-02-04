@@ -12,18 +12,17 @@ interface IMemberData {
   id: string;
 }
 
-function App() {
+export default function App() {
   const PAGINATION_ROW_COUNT = 10;
-  const [totalMemberCount, setTotalMemberCount] = useState(0);
-  const [paginationRows, setPaginationRows] = useState<number[]>([]);
-  const [currentPageCount, setCurrentPageCount] = useState(0);
 
+  const [searchParams, setSearchParams] = useState<string>("");
+  const [searchResultCount, setSearchResultCount] = useState(0);
+  const [currentPageCount, setCurrentPageCount] = useState(0);
   const [allMembers, setAllMembers] = useState<IMemberData[]>([]);
   const [searchResults, setSearchResults] = useState<IMemberData[]>([]);
   const [currentPageMembers, setCurrentPageMembers] = useState<IMemberData[]>(
     []
   );
-  // const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     setAllMembers(members);
@@ -31,47 +30,41 @@ function App() {
     setCurrentPageMembers(
       members.slice(currentPageCount, currentPageCount + PAGINATION_ROW_COUNT)
     );
-    setTotalMemberCount(allMembers.length);
+    setSearchResultCount(members.length);
   }, []);
 
   useEffect(() => {
-    setTotalMemberCount(allMembers.length);
+    setSearchResultCount(searchResults.length);
     setCurrentPageMembers(
-      members.slice(currentPageCount, currentPageCount + PAGINATION_ROW_COUNT)
+      searchResults.slice(
+        currentPageCount,
+        currentPageCount + PAGINATION_ROW_COUNT
+      )
     );
-
-    let rows = [];
-    for (
-      let i = 1;
-      i <= Math.ceil(totalMemberCount / PAGINATION_ROW_COUNT);
-      i++
-    ) {
-      rows.push(i);
-    }
-
-    setPaginationRows(rows);
+    // console.table(searchResults);
   }, [searchResults]);
 
+  useEffect(() => {
+    console.table("currentPageCount: " + currentPageCount);
+    setCurrentPageMembers(
+      searchResults.slice(
+        currentPageCount,
+        currentPageCount + PAGINATION_ROW_COUNT
+      )
+    );
+  }, [currentPageCount]);
+
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
-    // e.target.value = searchQuery;
     const searchQuery = e.target.value;
-    console.log("inside handleSearchChange: " + searchQuery);
-
-    if (!searchQuery) {
-      console.log("empty or falsy search");
-
-      return setSearchResults(allMembers);
-    } else {
-      // setSearchQuery(e.target.value);
-      console.log("inside interval: " + searchQuery);
-      let searchedMembers = allMembers.filter(
-        (member) =>
-          member.name.includes(searchQuery) ||
-          member.email.includes(searchQuery) ||
-          member.role.includes(searchQuery)
-      );
-      setSearchResults(searchedMembers);
-    }
+    setSearchParams(searchQuery);
+    console.table("inside handleSearchChange: " + searchQuery);
+    let searchedMembers = allMembers.filter(
+      (member) =>
+        member.name.includes(searchQuery) ||
+        member.email.includes(searchQuery) ||
+        member.role.includes(searchQuery)
+    );
+    setSearchResults(searchedMembers);
   }
 
   return (
@@ -87,23 +80,34 @@ function App() {
             <FaGithub className="h-8 w-8" />
           </a>
         </h1>
-        <input
-          type="search"
-          name="search"
-          id="search"
-          className="px-1 my-4 w-full border-2 border-gray-200 rounded-md focus:outline-gray-400"
-          onChange={handleSearchChange}
-          // value={searchQuery}
-          placeholder="Search by name, email or role"
-        />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSearchParams("");
+          }}
+          className="w-full"
+        >
+          <input
+            type="search"
+            name="search"
+            id="search"
+            className="px-1 my-4 w-full border-2 border-gray-200 rounded-md focus:outline-gray-400"
+            onChange={handleSearchChange}
+            value={searchParams}
+            placeholder="Search by name, email or role"
+          />
+        </form>
         {/* <h1>{searchResults.length}</h1> */}
         <TableContainer
-          members={searchResults.slice(0, PAGINATION_ROW_COUNT)}
+          // members={searchResults.slice(0, PAGINATION_ROW_COUNT)}
+          members={currentPageMembers}
         />
-        <PaginationContainer paginationRows={paginationRows} />
+        <PaginationContainer
+          searchResultCount={searchResultCount}
+          currentPageCount={currentPageCount}
+          setCurrentPageCount={setCurrentPageCount}
+        />
       </div>
     </div>
   );
 }
-
-export default App;
