@@ -126,6 +126,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
       <td className="px-4 py-2">{memberRow.role}</td>
       <td className="px-4 py-2 flex">
         <button
+          aria-label={`Edit Row ${memberRow.id}`}
           name={`Edit Row ${memberRow.id}`}
           onClick={(e) => {
             e.stopPropagation();
@@ -135,6 +136,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
           <BiEdit className="h-6 w-6 text-blue-600" />
         </button>
         <button
+          aria-label={`Delete Row ${memberRow.id}`}
           name={`Delete Row ${memberRow.id}`}
           onClick={(e) => {
             e.stopPropagation();
