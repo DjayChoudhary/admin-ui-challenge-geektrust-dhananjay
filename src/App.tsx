@@ -76,7 +76,7 @@ export default function App() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl p-4 m-4">
+    <div className="mx-auto max-w-3xl p-4 max-h-screen">
       <div className="flex flex-col justify-center items-center">
         <h1 className="flex items-center justify-center gap-4 text-xl font-extrabold text-gray-800 w-full">
           Admin UI Challenge
