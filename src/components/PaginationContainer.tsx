@@ -42,7 +42,7 @@ export default function PaginationContainer({
           // setCurrentPageCount((prev) => prev - PAGINATION_ROW_COUNT);
           setCurrentPage((prev) => (prev > 0 ? prev - 1 : 0));
         }}
-        className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-blue-500"
+        className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-blue-600"
       >
         <IoMdArrowRoundBack className="h-7 w-7" />
       </button>
@@ -54,7 +54,7 @@ export default function PaginationContainer({
             onClick={(e) => {
               setCurrentPage(page);
             }}
-            className={` w-7 h-7  font-semibold text-2xl ${
+            className={`flex items-center justify-center w-7 h-7  font-semibold text-2xl ${
               page === currentPage
                 ? "underline text-blue-600 scale-125 font-bold -mt-1"
                 : "hover:text-gray-700 hover:scale-105 text-gray-500"
@@ -74,7 +74,7 @@ export default function PaginationContainer({
             prev < paginationRows.length ? prev + 1 : prev
           );
         }}
-        className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-blue-500"
+        className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-blue-600"
       >
         <IoMdArrowRoundForward className="h-7 w-7" />
       </button>
