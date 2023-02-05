@@ -124,7 +124,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
       <td className="px-4 py-2">{memberRow.name}</td>
       <td className="px-4 py-2">{memberRow.email}</td>
       <td className="px-4 py-2">{memberRow.role}</td>
-      <td className="px-4 py-2 flex">
+      <td className="px-4 py-2 flex gap-1">
         <button
           aria-label={`Edit Row ${memberRow.id}`}
           name={`Edit Row ${memberRow.id}`}
@@ -133,7 +133,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
             console.log("Row Edit Clicked: " + memberRow.id);
           }}
         >
-          <BiEdit className="h-6 w-6 text-blue-600" />
+          <BiEdit className="h-7 w-7 text-blue-600" />
         </button>
         <button
           aria-label={`Delete Row ${memberRow.id}`}
@@ -144,7 +144,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
             handleRowDelete(memberRow.id);
           }}
         >
-          <MdDeleteOutline className="h-6 w-6 text-red-600" />
+          <MdDeleteOutline className="h-7 w-7 text-red-600" />
         </button>
       </td>
     </tr>
