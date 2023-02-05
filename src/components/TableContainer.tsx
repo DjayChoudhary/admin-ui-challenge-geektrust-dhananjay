@@ -14,7 +14,7 @@ export default function TableContainer({
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
 
   return (
-    <div className="relative w-full overflow-x-auto shadow-md">
+    <div className="relative w-full overflow-x-auto shadow-md overflow-y-auto">
       <table
         about="Admin UI Challenge Table"
         aria-label="Admin UI Challenge Table"

@@ -44,7 +44,7 @@ export default function PaginationContainer({
         }}
         className="rounded-full border-2 p-1 disabled:bg-gray-200 disabled:text-gray-400 text-blue-500"
       >
-        <IoMdArrowRoundBack className="h-8 w-8" />
+        <IoMdArrowRoundBack className="h-7 w-7" />
       </button>
       {paginationRows.map((page) => {
         return (
