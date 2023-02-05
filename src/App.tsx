@@ -84,6 +84,7 @@ export default function App() {
             href="https://github.com/DjayChoudhary/admin-ui-challenge-geektrust-dhananjay"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Github Source Code Link for Admin UI Challenge"
           >
             <FaGithub className="h-8 w-8" />
           </a>

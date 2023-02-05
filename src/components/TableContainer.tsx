@@ -15,13 +15,21 @@ export default function TableContainer({
 
   return (
     <div className="relative w-full overflow-x-auto shadow-md">
-      <table className="table-auto text-left w-full">
+      <table
+        about="Admin UI Challenge Table"
+        aria-label="Admin UI Challenge Table"
+        className="table-auto text-left w-full"
+      >
         <thead>
-          <tr className="border-b-2 border-b-gray-300 bg-gray-100">
+          <tr
+            aria-label="Table Header"
+            className="border-b-2 border-b-gray-300 bg-gray-100"
+          >
             <th className="pl-2 pr-4 py-2">
               <input
                 type="checkbox"
-                name="checkbox"
+                name="Select All Rows"
+                aria-label="Select All Rows"
                 id="checkbox"
                 checked={allRowsSelected}
                 onChange={() => setAllRowsSelected((prev) => !prev)}
@@ -90,7 +98,8 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
   return (
     <tr
       className="border-b-2 border-b-gray-100 hover:scale-y-105  hover:shadow-md focus:scale-y-105  focus:shadow-md"
-      id={memberRow.id}
+      id={`row-${memberRow.id}`}
+      aria-label={`row-${memberRow.id}`}
       onClick={(e) => {
         e.stopPropagation();
         handleRowToggle();
@@ -102,6 +111,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
           ref={rowSelection}
           type="checkbox"
           name="checkbox"
+          aria-label={`select-row-${memberRow.id}`}
           id={memberRow.id}
           checked={isRowSelected}
           onClick={(e) => {
@@ -116,6 +126,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
       <td className="px-4 py-2">{memberRow.role}</td>
       <td className="px-4 py-2 flex">
         <button
+          name={`Edit Row ${memberRow.id}`}
           onClick={(e) => {
             e.stopPropagation();
             console.log("Row Edit Clicked: " + memberRow.id);
@@ -124,6 +135,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
           <BiEdit className="h-6 w-6 text-blue-600" />
         </button>
         <button
+          name={`Delete Row ${memberRow.id}`}
           onClick={(e) => {
             e.stopPropagation();
             console.log("Row Edit Deleted: " + memberRow.id);
