@@ -19,7 +19,7 @@ export default function EditModalContainer({
       className="fixed top-0 left-0 right-0 z-50 hidden w-full mt-8 p-4 overflow-x-hidden overflow-y-auto md:inset-0"
     >
       <div className="relative w-full max-w-2xl md:auto bg-white shadow-lg p-4 mx-auto">
-        <div className="relative text-xl text-gray-700 font-bold bg-white rounded-lg shadow p-2 dark:bg-gray-700">
+        <div className="relative text-xl text-gray-700 font-bold bg-white rounded-lg shadow p-2">
           Edit Member Data
         </div>
         <div className="flex flex-col gap-4">
