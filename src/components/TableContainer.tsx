@@ -1,6 +1,7 @@
 import { BiEdit } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
+import EditModalContainer from "./EditModalContainer";
 interface ITableContainerProps {
   members: IRowMemberData[];
   setMembers: React.Dispatch<React.SetStateAction<IRowMemberData[]>>;
@@ -12,7 +13,9 @@ export default function TableContainer({
   handleRowDelete,
 }: ITableContainerProps) {
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
-
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const modalMemberRef = useRef<IRowMemberData | null>(null);
+  const [modalMember, setModalMember] = useState<IRowMemberData | null>(null);
   return (
     <div className="relative w-full overflow-x-auto shadow-md overflow-y-auto">
       <table
@@ -49,11 +52,15 @@ export default function TableContainer({
                 rowData={memberRow}
                 allRowsSelected={allRowsSelected}
                 handleRowDelete={handleRowDelete}
+                modalRef={modalRef}
+                modalMemberRef={modalMemberRef}
+                setModalMember={setModalMember}
               />
             );
           })}
         </tbody>
       </table>
+      <EditModalContainer modalRef={modalRef} memberData={modalMember!} />
     </div>
   );
 }
@@ -61,6 +68,9 @@ interface IRowProps {
   rowData: IRowMemberData;
   allRowsSelected: boolean;
   handleRowDelete: (rowId: string) => void;
+  modalRef: React.MutableRefObject<null | HTMLDivElement>;
+  modalMemberRef: React.MutableRefObject<null | IRowMemberData>;
+  setModalMember: React.Dispatch<React.SetStateAction<IRowMemberData | null>>;
 }
 interface IRowMemberData {
   selected?: boolean;
@@ -69,10 +79,18 @@ interface IRowMemberData {
   role: string;
   id: string;
 }
-function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
+function Row({
+  rowData,
+  allRowsSelected,
+  handleRowDelete,
+  modalRef,
+  modalMemberRef,
+  setModalMember,
+}: IRowProps) {
   const [isRowSelected, setIsRowSelected] = useState(allRowsSelected);
   const [memberRow, setMemberRow] = useState<IRowMemberData>(rowData);
   const rowSelection = useRef<HTMLInputElement | null>(null);
+
   function handleRowToggle() {
     console.log("Row toggled: " + memberRow.id);
 
@@ -86,6 +104,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
     setIsRowSelected(allRowsSelected);
   }, [allRowsSelected]);
   useEffect(() => {
+    rowSelection.current!.checked = isRowSelected;
     isRowSelected
       ? rowSelection.current?.parentElement?.parentElement?.classList.add(
           "bg-gray-100"
@@ -113,7 +132,7 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
           name="checkbox"
           aria-label={`select-row-${memberRow.id}`}
           id={memberRow.id}
-          checked={isRowSelected}
+          // checked={isRowSelected}
           onClick={(e) => {
             e.stopPropagation();
             handleRowToggle();
@@ -131,6 +150,8 @@ function Row({ rowData, allRowsSelected, handleRowDelete }: IRowProps) {
           onClick={(e) => {
             e.stopPropagation();
             console.log("Row Edit Clicked: " + memberRow.id);
+            modalRef.current!.style.display = "block";
+            setModalMember(memberRow);
           }}
         >
           <BiEdit className="h-7 w-7 text-blue-600" />
