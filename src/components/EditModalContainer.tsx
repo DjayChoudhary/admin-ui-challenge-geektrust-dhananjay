@@ -54,21 +54,24 @@ export default function EditModalContainer({
               defaultValue={memberData?.role}
             />
           </fieldset>
+          <div className="flex justify-start gap-6">
+            <button
+              type="submit"
+              className="px-2 py-1 text-white font-semibold bg-blue-600 rounded-md"
+            >
+              Save
+            </button>
+            <button
+              type="submit"
+              onClick={() => {
+                modalRef.current!.style.display = "none";
+              }}
+              className="px-2 py-1 font-semibold text-gray-600 rounded-md bg-white border-2 border-gray-200"
+            >
+              Cancel
+            </button>
+          </div>
         </form>
-
-        <div className="flex justify-start gap-6">
-          <button className="px-2 py-1 text-white font-semibold bg-blue-600 rounded-md">
-            Save
-          </button>
-          <button
-            onClick={() => {
-              modalRef.current!.style.display = "none";
-            }}
-            className="px-2 py-1 font-semibold text-gray-600 rounded-md bg-white border-2 border-gray-200"
-          >
-            Cancel
-          </button>
-        </div>
       </div>
     </div>
   );
