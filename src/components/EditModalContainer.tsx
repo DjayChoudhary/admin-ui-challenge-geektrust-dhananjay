@@ -28,11 +28,17 @@ export default function EditModalContainer({
         >
           <fieldset>
             <label htmlFor="memberId">Id</label>
-            <input type="text" disabled defaultValue={memberData?.id} />
+            <input
+              className="w-full py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-500"
+              type="text"
+              disabled
+              defaultValue={memberData?.id}
+            />
           </fieldset>
           <fieldset>
             <label htmlFor="memberName">Name</label>
             <input
+              className="w-full py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-500"
               id="memberName"
               type="text"
               defaultValue={memberData?.name}
@@ -41,6 +47,7 @@ export default function EditModalContainer({
           <fieldset>
             <label htmlFor="memberEmail">Email</label>
             <input
+              className="w-full py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-500"
               id="memberEmail"
               type="email"
               defaultValue={memberData?.email}
@@ -49,6 +56,7 @@ export default function EditModalContainer({
           <fieldset>
             <label htmlFor="memberRole">Role</label>
             <input
+              className="w-full py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-500"
               id="memberRole"
               type="text"
               defaultValue={memberData?.role}
