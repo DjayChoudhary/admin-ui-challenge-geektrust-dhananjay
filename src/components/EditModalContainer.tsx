@@ -18,12 +18,12 @@ export default function EditModalContainer({
       id="editModal"
       className="fixed top-0 left-0 right-0 z-50 hidden w-full mt-16 mx-4 overflow-x-hidden overflow-y-auto md:inset-0  backdrop-blur-sm"
     >
-      <div className="relative w-full max-w-2xl md:auto bg-white shadow-lg px-4 py-2 mx-auto border-2 border-gray-50">
+      <div className="relative w-full max-w-2xl bg-white shadow-lg px-4 py-2 mx-auto border-2 border-gray-50">
         <div className="relative text-xl text-gray-800 font-bold bg-white rounded-lg shadow-sm p-2">
           Edit Member Data
         </div>
         <form
-          className="flex flex-col gap-4 px-2 py-4"
+          className="flex flex-col gap-4 px-2 py-4 mx-2"
           onSubmit={(e) => e.preventDefault()}
         >
           <fieldset>
