@@ -23,10 +23,34 @@ export default function EditModalContainer({
           Edit Member Data
         </div>
         <form className="flex flex-col gap-4 px-2 py-4">
-          <span>Id: {memberData?.id}</span>
-          <span>name: {memberData?.name}</span>
-          <span>email: {memberData?.email}</span>
-          <span>role: {memberData?.role}</span>
+          <fieldset>
+            <label htmlFor="memberId">Id</label>
+            <input type="text" disabled defaultValue={memberData?.id} />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="memberName">Name</label>
+            <input
+              id="memberName"
+              type="text"
+              defaultValue={memberData?.name}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="memberEmail">Email</label>
+            <input
+              id="memberEmail"
+              type="email"
+              defaultValue={memberData?.email}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="memberRole">Role</label>
+            <input
+              id="memberRole"
+              type="text"
+              defaultValue={memberData?.role}
+            />
+          </fieldset>
         </form>
 
         <div className="flex justify-start gap-6">
