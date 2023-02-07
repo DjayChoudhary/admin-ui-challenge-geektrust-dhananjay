@@ -23,7 +23,7 @@ export default function EditModalContainer({
           Edit Member Data
         </div>
         <form
-          className="flex flex-col gap-4 px-2 py-4 mx-2"
+          className="flex flex-col gap-4 px-2 py-4 mr-2"
           onSubmit={(e) => e.preventDefault()}
         >
           <fieldset>
