@@ -22,7 +22,10 @@ export default function EditModalContainer({
         <div className="relative text-xl text-gray-700 font-bold bg-white rounded-lg shadow-sm p-2">
           Edit Member Data
         </div>
-        <form className="flex flex-col gap-4 px-2 py-4">
+        <form
+          className="flex flex-col gap-4 px-2 py-4"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <fieldset>
             <label htmlFor="memberId">Id</label>
             <input type="text" disabled defaultValue={memberData?.id} />
