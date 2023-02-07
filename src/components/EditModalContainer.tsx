@@ -16,10 +16,10 @@ export default function EditModalContainer({
     <div
       ref={modalRef}
       id="editModal"
-      className="fixed top-0 left-0 right-0 z-50 hidden w-full mt-16 overflow-x-hidden overflow-y-auto md:inset-0  backdrop-blur-sm"
+      className="fixed top-0 left-0 right-0 z-50 hidden w-full mt-16 mx-4 overflow-x-hidden overflow-y-auto md:inset-0  backdrop-blur-sm"
     >
       <div className="relative w-full max-w-2xl md:auto bg-white shadow-lg px-4 py-2 mx-auto border-2 border-gray-50">
-        <div className="relative text-xl text-gray-700 font-bold bg-white rounded-lg shadow-sm p-2">
+        <div className="relative text-xl text-gray-800 font-bold bg-white rounded-lg shadow-sm p-2">
           Edit Member Data
         </div>
         <form
@@ -27,7 +27,9 @@ export default function EditModalContainer({
           onSubmit={(e) => e.preventDefault()}
         >
           <fieldset>
-            <label htmlFor="memberId">Id</label>
+            <label className="font-semibold text-gray-800" htmlFor="memberId">
+              Id
+            </label>
             <input
               className="w-full px-2 py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-700"
               type="text"
@@ -36,7 +38,9 @@ export default function EditModalContainer({
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="memberName">Name</label>
+            <label className="font-semibold text-gray-800" htmlFor="memberName">
+              Name
+            </label>
             <input
               className="w-full px-2 py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-700"
               id="memberName"
@@ -45,7 +49,12 @@ export default function EditModalContainer({
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="memberEmail">Email</label>
+            <label
+              className="font-semibold text-gray-800"
+              htmlFor="memberEmail"
+            >
+              Email
+            </label>
             <input
               className="w-full px-2 py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-700"
               id="memberEmail"
@@ -54,7 +63,9 @@ export default function EditModalContainer({
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="memberRole">Role</label>
+            <label className="font-semibold text-gray-800" htmlFor="memberRole">
+              Role
+            </label>
             <input
               className="w-full px-2 py-1  border-2 border-gray-200 rounded-md focus:outline-gray-400 text-gray-700"
               id="memberRole"
