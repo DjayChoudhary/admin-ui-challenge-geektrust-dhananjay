@@ -22,12 +22,12 @@ export default function EditModalContainer({
         <div className="relative text-xl text-gray-700 font-bold bg-white rounded-lg shadow p-2">
           Edit Member Data
         </div>
-        <div className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4">
           <span>Id: {memberData?.id}</span>
           <span>name: {memberData?.name}</span>
           <span>email: {memberData?.email}</span>
           <span>role: {memberData?.role}</span>
-        </div>
+        </form>
 
         <div className="flex justify-start gap-6">
           <button className="px-2 py-1 text-white font-semibold bg-blue-600 rounded-md">
