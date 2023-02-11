@@ -1,3 +1,5 @@
+import React from "react";
+
 interface IRowMemberData {
   selected?: boolean;
   name: string;
@@ -12,6 +14,9 @@ export default function EditModalContainer({
   modalRef: React.MutableRefObject<null | HTMLDivElement>;
   memberData?: IRowMemberData;
 }) {
+  function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
   return (
     <div
       ref={modalRef}
@@ -24,7 +29,7 @@ export default function EditModalContainer({
         </div>
         <form
           className="flex flex-col gap-4 px-2 py-4 mr-2"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleModalSubmit}
         >
           <fieldset>
             <label className="font-semibold text-gray-800" htmlFor="memberId">
@@ -81,7 +86,7 @@ export default function EditModalContainer({
               Save
             </button>
             <button
-              type="submit"
+              type="button"
               onClick={() => {
                 modalRef.current!.style.display = "none";
               }}
