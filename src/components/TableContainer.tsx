@@ -6,11 +6,13 @@ interface ITableContainerProps {
   members: IRowMemberData[];
   setMembers: React.Dispatch<React.SetStateAction<IRowMemberData[]>>;
   handleRowDelete: (rowId: string) => void;
+  handleRowEdit: (updatedMemberData: IRowMemberData) => void;
 }
 export default function TableContainer({
   members,
   setMembers,
   handleRowDelete,
+  handleRowEdit,
 }: ITableContainerProps) {
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -60,7 +62,11 @@ export default function TableContainer({
           })}
         </tbody>
       </table>
-      <EditModalContainer modalRef={modalRef} memberData={modalMember!} />
+      <EditModalContainer
+        modalRef={modalRef}
+        memberData={modalMember!}
+        handleRowEdit={handleRowEdit}
+      />
     </div>
   );
 }
