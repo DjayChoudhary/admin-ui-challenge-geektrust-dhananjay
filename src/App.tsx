@@ -32,6 +32,29 @@ export default function App() {
       prevMembers.filter((member) => member.id !== rowId)
     );
   }
+
+  function handleRowEdit(updatedMemberData: IMemberData) {
+    setAllMembers((prevMembers) =>
+      prevMembers.map((member) => {
+        if (member.id === updatedMemberData.id) {
+          member.name = updatedMemberData.name;
+          member.email = updatedMemberData.email;
+          member.role = updatedMemberData.role;
+        }
+        return member;
+      })
+    );
+    setSearchResults((prevMembers) =>
+      prevMembers.map((member) => {
+        if (member.id === updatedMemberData.id) {
+          member.name = updatedMemberData.name;
+          member.email = updatedMemberData.email;
+          member.role = updatedMemberData.role;
+        }
+        return member;
+      })
+    );
+  }
   useEffect(() => {
     setAllMembers(members);
     setSearchResults(members);
@@ -112,6 +135,7 @@ export default function App() {
           members={currentPageMembers}
           setMembers={setCurrentPageMembers}
           handleRowDelete={handleRowDelete}
+          handleRowEdit={handleRowEdit}
         />
         <PaginationContainer
           searchResultCount={searchResultCount}
