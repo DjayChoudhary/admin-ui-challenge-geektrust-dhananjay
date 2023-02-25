@@ -10,9 +10,11 @@ interface IRowMemberData {
 export default function EditModalContainer({
   modalRef,
   memberData,
+  handleRowEdit,
 }: {
   modalRef: React.MutableRefObject<null | HTMLDivElement>;
   memberData?: IRowMemberData;
+  handleRowEdit: (updatedMemberData: IRowMemberData) => void;
 }) {
   function handleModalSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
