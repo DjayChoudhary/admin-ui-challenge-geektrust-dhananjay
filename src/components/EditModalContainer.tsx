@@ -81,6 +81,9 @@ export default function EditModalContainer({
           <div className="flex justify-start gap-6">
             <button
               type="submit"
+              onClick={() => {
+                modalRef.current!.style.display = "none";
+              }}
               className="px-2 py-1 text-white font-semibold bg-blue-600 rounded-md"
             >
               Save
